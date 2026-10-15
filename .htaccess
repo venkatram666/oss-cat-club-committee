@@ -1,0 +1,10 @@
+# Safety net: if the WHOLE project folder is exposed by mistake (e.g. copied into htdocs),
+# block everything except the public/ folder. The recommended setup points the
+# web server's DocumentRoot directly at public/ (see README.md).
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?!public/) - [F,L]
+</IfModule>
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
